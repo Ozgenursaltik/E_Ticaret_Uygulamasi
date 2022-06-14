@@ -1,0 +1,47 @@
+﻿@using E_Ticaret_Uygulamasi.Models
+@{
+    ViewBag.Title = "Home Page";
+
+    List<Kategoriler> kategoriListe = ViewBag.Kategoriler as List<Kategoriler>;
+    List<Urunler> urunListe = ViewBag.Urunler as List<Urunler>;
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET MVC E-Ticaret Projesi</h1>
+   
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <h2>Kategoriler</h2>
+        <ul>
+            @foreach (var item in kategoriListe)
+            {
+                <li>
+                    @Html.ActionLink(item.KategoriAdi,"Kategoriler",new {id=item.KategoriID })
+                </li>
+            }
+        </ul>
+       
+    </div>
+    <div class="col-md-9">
+        <h2>Ürünler</h2>
+        
+           @foreach (var item in urunListe)
+           {
+    <div class="col-md-4">
+        <h5>@item.UrunAdi</h5>
+        <img src="~/Resim/@(item.UrunID).jpg" width="100" height="100" />
+        <p>
+            <br />
+            <a href="@Url.Action("Urun","Home",new {id=item.UrunID })" class="btn btn-warning">Ürün Detay &nbsp;<span style="color:#000000;float:inline-start;">@item.UrunFiyatı TL</span></a>
+
+        </p>
+        <br />
+    </div>
+           }
+        
+       
+    </div>
+ 
+</div>
